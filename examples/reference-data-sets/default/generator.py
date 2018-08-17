@@ -28,7 +28,7 @@ def generateGenericMeta(type, t, v):
 
 def link(source, target, type):
   if not target:
-    return
+    return None
 
   source["links"].append({"type": type, "target": target["meta"]["id"]})
 
@@ -458,19 +458,12 @@ def buildMsgArrayFromIterationMap(iterationMap):
 def generateIterationZeroMessages(iterationsMap, t):
   iterationsMap[0] = {}
   iterationsMap[0]["SCS1"] = generateSCS1(iterationsMap, 0, t, 0)
-  t += 1
   iterationsMap[0]["EDef1"] = generateEDef1(iterationsMap, 0, t, 1)
-  t += 1
   iterationsMap[0]["EDef2"] = generateEDef2(iterationsMap, 0, t, 1)
-  t += 1
   iterationsMap[0]["ArtC3"] = generateArtC3(iterationsMap, 0, t, 1)
-  t += 1
   iterationsMap[0]["CDef3"] = generateCDef3(iterationsMap, 0, t, 1)
-  t += 1
   iterationsMap[0]["ArtCC1"] = generateArtCC1(iterationsMap, 0, t, 1)
-  t += 1
   iterationsMap[0]["ArtCC2"] = generateArtCC2(iterationsMap, 0, t, 1)
-  t += 1
   iterationsMap[0]["ArtCC3"] = generateArtCC3(iterationsMap, 0, t, 1)
 
   return t
@@ -506,7 +499,6 @@ def generateSubSystemBuildEvents(iterationsMap, iteration, t):
   return t
 
 def generateSubSystemTestEvents(iterationsMap, iteration, t):
-  t += 2000
   iterationsMap[iteration]["ActT3"] = generateActT3(iterationsMap, iteration, t, 2000)
   iterationsMap[iteration]["ActS3"] = generateActS3(iterationsMap, iteration, t, 3)
   iterationsMap[iteration]["TSS1"] = generateTSS1(iterationsMap, iteration, t, 2000)
@@ -522,7 +514,7 @@ def generateSubSystemTestEvents(iterationsMap, iteration, t):
   iterationsMap[iteration]["TSF1"] = generateTSF1(iterationsMap, iteration, t, 50)
   iterationsMap[iteration]["ActF3"] = generateActF3(iterationsMap, iteration, t, 3)
   iterationsMap[iteration]["CLM2"] = generateCLM2(iterationsMap, iteration, t, 300)
-
+  
   return t
 
 def generateSystemIntegrationEvents(iterationsMap, iteration, t):
